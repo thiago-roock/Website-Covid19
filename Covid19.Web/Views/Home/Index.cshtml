@@ -1,0 +1,221 @@
+﻿@{ ViewBag.Title = "Covid-19 For Help"; }
+
+<div class="col-sm">
+    @if (ViewBag.CovidData != null)
+    {
+<div class="table-responsive-sm">
+    <table class="table table-dark text-center">
+        <caption data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Atualizado conforme os </em> <u>dados</u> <b>oficiais</b>">
+            <svg class="bi bi-clock-history" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M8.515 1.019A7 7 0 008 1V0a8 8 0 01.589.022l-.074.997zm2.004.45a7.003 7.003 0 00-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 00-.439-.27l.493-.87a8.025 8.025 0 01.979.654l-.615.789a6.996 6.996 0 00-.418-.302zm1.834 1.79a6.99 6.99 0 00-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 00-.214-.468l.893-.45a7.976 7.976 0 01.45 1.088l-.95.313a7.023 7.023 0 00-.179-.483zm.53 2.507a6.991 6.991 0 00-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 01-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 01-.401.432l-.707-.707z" clip-rule="evenodd" />
+                <path fill-rule="evenodd" d="M8 1a7 7 0 104.95 11.95l.707.707A8.001 8.001 0 118 0v1z" clip-rule="evenodd" />
+                <path fill-rule="evenodd" d="M7.5 3a.5.5 0 01.5.5v5.21l3.248 1.856a.5.5 0 01-.496.868l-3.5-2A.5.5 0 017 9V3.5a.5.5 0 01.5-.5z" clip-rule="evenodd" />
+            </svg> @ViewBag.CovidData.Last_Update
+        </caption>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Confirmadas</th>
+                <th scope="col">Em Tratamento</th>
+                <th scope="col">Mortas</th>
+                <th scope="col">Curadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">
+                    Pessoas <svg class="bi bi-arrow-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd" />
+                    </svg>
+                </th>
+                <td data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Cada pessoa infectada tem </em> <u>estimativa</u> de infectar <b>de 1 à 3 pessoas</b>, estamos falando em um total de
+                                        @{
+
+                                            var resultado = int.Parse(ViewBag.CovidData.Confirmed) * 3;
+                                            @resultado.ToString();
+                                        } casos, se as pessoas não ficarem em quarentena.">
+                    @string.Format("{0:0,0}", int.Parse(@ViewBag.CovidData.Confirmed))
+                    <svg class="bi bi-person-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M11 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM1.022 13h9.956a.274.274 0 00.014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 00.022.004zm9.974.056v-.002.002zM6 7a2 2 0 100-4 2 2 0 000 4zm3-2a3 3 0 11-6 0 3 3 0 016 0zm4.5 0a.5.5 0 01.5.5v2a.5.5 0 01-.5.5h-2a.5.5 0 010-1H13V5.5a.5.5 0 01.5-.5z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M13 7.5a.5.5 0 01.5-.5h2a.5.5 0 010 1H14v1.5a.5.5 0 01-1 0v-2z" clip-rule="evenodd" />
+                    </svg>
+
+                </td>
+                <td data-toggle="tooltip" data-placement="left" data-html="true" title="<em>Às pessoas costumam ficar </em> <u>doentes</u> em um periodo de <b>14 à 21 dias</b>, estamos falando de gente se recuperando ainda em
+                                        @{
+
+                                            var qtdeDeDias = DateTime.Now.AddDays(21).ToString("dd.MM.yyyy");
+                                            @qtdeDeDias.ToString();
+                                        }, então por favor, fique em casa de quarentena!">
+
+                    @string.Format("{0:0,0}", int.Parse(@ViewBag.CovidData.Active))
+                    <svg class="bi bi-heart-half" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 1.314C3.562-3.248-7.534 4.735 8 15V1.314z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z" clip-rule="evenodd" />
+                    </svg>
+                </td>
+                <td data-toggle="tooltip" data-placement="right" data-html="true" title="<em>Os casos graves de coronavírus</em> acontecem geralmente em <u>idosos, diabéticos e hipertensos.</u> Pessoas com doenças <b>cardiovasculares e pulmonares</b> também fazem parte do grupo de risco idependente da idade.">
+                    @string.Format("{0:0,0}", int.Parse(@ViewBag.CovidData.Deaths))
+                    <svg class="bi bi-heart" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z" clip-rule="evenodd" />
+                    </svg>
+                </td>
+                <td data-toggle="tooltip" data-placement="left" data-html="true" title="<em>O Coronavírus (COVID-19)</em> não é uma gripezinha ou resfriadinho, mas <u>pessoas jovens e pessoas sem o sistema imunológico prejudicado por doenças crônicas</u>, tendem a se recuperar dentro de um período de <b>11 à 14 dias.</b>">
+                    @string.Format("{0:0,0}", int.Parse(@ViewBag.CovidData.Recovered))
+                    <svg class="bi bi-heart-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" clip-rule="evenodd" />
+                    </svg>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> }
+else
+{
+<h3>Houve algum problema, tente novamente em alguns minutos.</h3>}
+</div>
+
+<div id="titulo-casos"></div>
+@{ Html.RenderPartial("_TaxaDeMortesPorDoencaCronicas");
+    Html.RenderPartial("_TaxaDeMortesPorIdade");
+    Html.RenderPartial("_TaxaDeMortesPorSexo"); }
+
+
+<h4 id="graphQL" class="invisible"></h4>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div class="spinner-grow" id="load_mortos_estados" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div id="donutchart_mortos"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 text-center">
+        <div class="spinner-grow" id="load_casos_estados" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div id="donutchart_estados"></div>
+    </div>
+    <div class="col-md-6 text-center">
+        <div class="spinner-grow" id="load_grafico_dias" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div id="donutchart_day"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div class="spinner-grow" id="load_grafico_meses" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div id="GraficoDeMeses"></div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class='tableauPlaceholder' id='viz1586263510113' style='position: relative'>
+            <noscript>
+                <a href='#'><img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MK&#47;MKTScoredeisolamentosocial&#47;VisoGeral&#47;1_rss.png' style='border: none' /></a>
+            </noscript>
+            <object class='tableauViz' style='display:none;'>
+                <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                <param name='embed_code_version' value='3' />
+                <param name='site_root' value='' />
+                <param name='name' value='MKTScoredeisolamentosocial&#47;VisoGeral' />
+                <param name='tabs' value='yes' />
+                <param name='toolbar' value='yes' />
+                <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MK&#47;MKTScoredeisolamentosocial&#47;VisoGeral&#47;1.png' />
+                <param name='animate_transition' value='yes' />
+                <param name='display_static_image' value='yes' />
+                <param name='display_spinner' value='yes' />
+                <param name='display_overlay' value='yes' />
+                <param name='display_count' value='yes' />
+            </object>
+        </div>
+    </div>
+</div>
+
+<h4 id="two" class="invisible"></h4>
+@{ Html.RenderPartial("_CardsBoletins"); }
+
+<h4 id="tree" class="invisible"></h4>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Em breve</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center">
+                    <strong>Página em construção...</strong>
+                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Entrar em contato com uma linha de apoio</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-unstyled">
+                    <li class="media">
+                        <svg class="bi bi-phone align-self-center mr-3" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M11 1H5a1 1 0 00-1 1v12a1 1 0 001 1h6a1 1 0 001-1V2a1 1 0 00-1-1zM5 0a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V2a2 2 0 00-2-2H5z" clip-rule="evenodd" />
+                            <path fill-rule="evenodd" d="M8 14a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                        </svg>
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">Ligue para um voluntário do Centro de Valorização da Vida (CVV)</h5>
+                            <p class="text-black-50">Ligue para 188.</p>
+                        </div>
+                    </li>
+                    <li class="media my-4">
+                        <svg class="bi bi-chat-dots align-self-center mr-3" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M2.678 11.894a1 1 0 01.287.801 10.97 10.97 0 01-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 01.71-.074A8.06 8.06 0 008 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 01-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 00.244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 01-2.347-.306c-.52.263-1.639.742-3.468 1.105z" clip-rule="evenodd" />
+                            <path d="M5 8a1 1 0 11-2 0 1 1 0 012 0zm4 0a1 1 0 11-2 0 1 1 0 012 0zm4 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                        </svg>
+                        <div class="media-body">
+                            <h5 class="mt-0 mb-1">Entre no bate-papo com um voluntário do Centro de Valorização a vida</h5>
+                            <a href="https://www.cvv.org.br/chat/?fbclid=IwAR0_JpgwlPJbEDzYk5N_BuNH9j0qL8FMZZgyK0tsiRHX7FxmKvt0HusZiAo" class="text-black-50">Conversa online.</a>
+                        </div>
+                    </li>
+                    <li class="media">
+                        <svg class="bi bi-envelope-fill align-self-center mr-3" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M.05 3.555L8 8.414l7.95-4.859A2 2 0 0014 2H2A2 2 0 00.05 3.555zM16 4.697l-5.875 3.59L16 11.743V4.697zm-.168 8.108L9.157 8.879 8 9.586l-1.157-.707-6.675 3.926A2 2 0 002 14h12a2 2 0 001.832-1.195zM0 11.743l5.875-3.456L0 4.697v7.046z" />
+                        </svg>                            <div class="media-body">
+                            <h5 class="mt-0 mb-1">Envie um email para um voluntário do Centro de Valorização da Vida (CVV)</h5>
+                            <p class="text-black-50">Envie um email para <a href="maito:atendimento@cvv.org.br"><strong>atendimento@cvv.org.br</strong></a>.</p>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

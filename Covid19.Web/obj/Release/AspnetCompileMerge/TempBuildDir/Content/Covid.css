@@ -1,0 +1,133 @@
+﻿@media(max-width: 900px) 
+{
+    .desktop 
+    {
+      display: none;
+    }
+
+    .mobile 
+    {
+      display: block; /* ou inline, inline-block */
+    }
+}
+
+/* Cursor */
+.typed-cursor {
+}
+
+/* If fade out option is set */
+.typed-fade-out {
+}
+
+.card-img-top{
+    width:286px;
+    height:214.49px
+}
+
+
+.visible {
+    visibility: visible;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.element {
+    @include invisible(visible);
+}
+
+.element {
+    @include invisible(hidden);
+}
+
+.card {
+    max-width: 18rem;
+    margin-left: 1%;
+    margin-top: 5%;
+}
+
+.card-topo {
+    margin-top: 20%;
+}
+ 
+#topo
+{
+    max-width: 1000px;
+    max-height: 300px;
+    margin-top: 1%;
+}
+
+#FimDaPagina 
+{
+    width:100%;
+}
+
+#topoTitulo {
+    max-width: 1000px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+
+#MinhaCaixa {
+    max-width: 1000px;
+    width: 100%;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#one {
+    margin-top: 5%;
+}
+body {
+    background-color: hsla(345, 10%, 90%, 0.1) !important;
+    max-width: 1000px;
+    max-height: 720px;
+    width: 1000px;
+    height: 720px;
+
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+
+
+.site-header {
+    background-color: rgba(0, 0, 0, .85);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+}
+
+    .site-header a {
+        color: #999;
+        transition: ease-in-out color .15s;
+    }
+
+        .site-header a:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+
+
+
+
+
+.flex-equal > * {
+    -ms-flex: 1;
+    flex: 1;
+}
+
+@media (min-width: 768px) {
+    .flex-md-equal > * {
+        -ms-flex: 1;
+        flex: 1;
+    }
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+
