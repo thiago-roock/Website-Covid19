@@ -1,4 +1,4 @@
 language: csharp
-solution: RdPodcastingWeb.sln
+solution: Website Covid19.sln
 mono:
   - latest
